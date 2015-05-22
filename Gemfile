@@ -16,6 +16,7 @@ gem 'devise'
 gem 'devise-i18n'
 gem 'sendgrid'
 gem 'thin'
+gem 'rails_admin'
 group :development do
   gem 'better_errors'
   gem 'guard-bundler'
