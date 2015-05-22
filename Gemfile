@@ -7,6 +7,7 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
+gem 'grape'
 group :development, :test do
   gem 'byebug'
   gem 'web-console', '~> 2.0'
@@ -16,6 +17,7 @@ gem 'devise'
 gem 'devise-i18n'
 gem 'sendgrid'
 gem 'thin'
+gem 'rails_admin'
 group :development do
   gem 'better_errors'
   gem 'guard-bundler'
@@ -36,12 +38,12 @@ group :development, :test do
   gem 'pry-rescue'
   gem 'rspec-rails'
   gem 'rubocop'
-  gem 'mongoid', github: "mongoid/mongoid"
+  gem 'mongoid'
   gem 'bson_ext'
   gem 'devise'
 end
 group :production do
-  gem 'pg'
+  gem 'mongoid'
   gem 'rails_12factor'
 end
 group :test do
