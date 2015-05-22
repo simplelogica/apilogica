@@ -36,7 +36,9 @@ group :development, :test do
   gem 'pry-rescue'
   gem 'rspec-rails'
   gem 'rubocop'
-  gem 'sqlite3'
+  gem 'mongoid', github: "mongoid/mongoid"
+  gem 'bson_ext'
+  gem 'devise'
 end
 group :production do
   gem 'pg'
