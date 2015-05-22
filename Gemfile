@@ -38,12 +38,12 @@ group :development, :test do
   gem 'pry-rescue'
   gem 'rspec-rails'
   gem 'rubocop'
-  gem 'mongoid', github: "mongoid/mongoid"
+  gem 'mongoid'
   gem 'bson_ext'
   gem 'devise'
 end
 group :production do
-  gem 'pg'
+  gem 'mongoid'
   gem 'rails_12factor'
 end
 group :test do
