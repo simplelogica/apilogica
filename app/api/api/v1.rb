@@ -41,5 +41,39 @@ class API
         end
       end
     end
+
+    resource :services do
+      route_param :id do
+        desc 'Make a query for a resource' do
+          detail 'Returns the result of query for a resource.'
+        end
+        params do
+          use :query
+        end
+        get do
+          service_name = params[:id]
+          api_service = ApiService.where(name: service_name).last
+          if api_service
+            # TODO: Add the service class to the api service
+            service = Services::Slack.new api_service
+            resource_name, query = params[:text].split(' ', 2)
+            api_resource = ApiResource.where(name: resource_name).last
+            if api_resource
+              # TODO: Add the resource class to the api resource
+              resource = Resources::Giphy.new api_resource
+              resource_response = resource.request query
+              data = { image: resource_response }
+              data.merge channel: "#{params[:channel_name]}" if params[:channel_name]
+              service_response = service.request data
+              status service_response.code
+            else
+              status 404
+            end
+          else
+            status 404
+          end
+        end
+      end
+    end
   end
 end
