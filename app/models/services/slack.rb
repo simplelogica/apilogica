@@ -13,7 +13,7 @@ module Services
       data = {
         channel: @options[:channel] || '#apilogica',
         username: 'Apilogica',
-        text: options[:text] || '',
+        text: options[:text] || "Sent by #{@options[:user_name]}",
         icon_emoji: ':crystal_ball:',
         attachments: [
           { image_url: options[:image] }
