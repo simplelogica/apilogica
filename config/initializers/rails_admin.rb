@@ -1,3 +1,6 @@
+# Require models configs
+Dir["#{Rails.root}/lib/rails_admin/config/models/*.rb"].each {|file| require file }
+
 RailsAdmin.config do |config|
 
   ### Popular gems integration
