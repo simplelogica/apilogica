@@ -27,13 +27,13 @@ development:
         # The time in seconds that Moped should wait before retrying an
         # operation on failure. (default: 0.25)
         # retry_interval: 0.25
-        
+
         # The connection pool size per-node.  This should match or exceed the
         # number of threads for a multi-threaded application. (default: 5)
         # pool_size: 5
-        
+
         # The time in seconds that Moped should wait for the pool to provide
-        # an available connection.  This number should probably remain at the 
+        # an available connection.  This number should probably remain at the
         # default, unless for some reason you absolutely need to limit the
         # pool_size, as this wait is only used when the pool is saturated.
         # (default: 0.5)
@@ -42,18 +42,18 @@ development:
         # The time in seconds before Moped will timeout connection and node
         # operations. (default: 5)
         # timeout: 5
-        
-        # The amount of time in seconds between forced refreshes of node 
+
+        # The amount of time in seconds between forced refreshes of node
         # information including the discovery of new peers. (default: 300)
         # refresh_interval: 300
-        
+
         # The amount of time in seconds that a node will be flagged as down.
-        # (default: 30) 
+        # (default: 30)
         # down_interval: 30
-        
+
         # Whether connections should use SSL. (default: nil/false)
         # ssl: false
-        
+
         # Whether Moped will use the existing seeds/nodes to find other peers.
         # (default: true)
         # auto_discover: true
@@ -99,3 +99,44 @@ test:
         # low amounts for fast failures.
         max_retries: 1
         retry_interval: 0
+
+# mongoid 4.x
+#
+production:
+ sessions:
+   default:
+     # The standard MongoDB connection URI allows for easy
+     # replica set connection setup.
+     # Use environment variables or a config file to keep your
+     # credentials safe e.g. <%= ENV['MONGOLAB_URI'] %>.
+     uri: <%= ENV['MONGOLAB_URI'] %>
+
+     options:
+       # max_retries specifies the number of times to attempt
+       # an operation before giving up.
+       max_retries: 30
+
+       # retry_interval specifies the number of seconds to wait
+       # before retrying a single operation.
+       retry_interval: 1
+
+       # The default timeout is 5, which is the time in seconds
+       # for an operation to time out.
+       # We recommend 15 because it allows for plenty of time
+       # in most operating environments.
+       # Mongoid doubles the configured value (known issue) so
+       # 15 results in a timeout of 30s.
+       # Note that if you have a long-running query
+       # (over 30 seconds), it will time out.
+       # See our example for long-running queries in the blog
+       # post referenced above.
+       timeout: 15
+
+       # refresh_interval specifies the number of seconds to cache server information.
+       # Lowering this number will help the driver recover more quickly from changes to replica set reconfiguration
+       refresh_interval: 10
+
+       # pool_size default size is 5 connections.
+       # If you're running a lot of threads, you may consider increasing pool_size
+       # to the number of threads you're running e.g.
+       # poolsize: <%= ENV['NUM_THREADS'] %>
