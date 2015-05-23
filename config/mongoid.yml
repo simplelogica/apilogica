@@ -100,22 +100,18 @@ test:
         max_retries: 1
         retry_interval: 0
 
+# mongoid 4.x
+#
 production:
  sessions:
    default:
      # The standard MongoDB connection URI allows for easy
      # replica set connection setup.
      # Use environment variables or a config file to keep your
-     # credentials safe.
+     # credentials safe e.g. <%= ENV['MONGOLAB_URI'] %>.
      uri: <%= ENV['MONGOLAB_URI'] %>
 
      options:
-       # The default consistency is :eventual, which reads from
-       #secondaries when possible.
-       # Strong forces reads to primary.
-       # We recommend using strong consistency.
-       consistency: :strong
-
        # max_retries specifies the number of times to attempt
        # an operation before giving up.
        max_retries: 30
@@ -136,10 +132,11 @@ production:
        # post referenced above.
        timeout: 15
 
-       # Set this to ensure that your writes are a round-trip operation
-       # and are confirmed by the system.
-       safe: true
-
        # refresh_interval specifies the number of seconds to cache server information.
        # Lowering this number will help the driver recover more quickly from changes to replica set reconfiguration
        refresh_interval: 10
+
+       # pool_size default size is 5 connections.
+       # If you're running a lot of threads, you may consider increasing pool_size
+       # to the number of threads you're running e.g.
+       # poolsize: <%= ENV['NUM_THREADS'] %>
