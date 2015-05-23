@@ -55,16 +55,14 @@ class API
           api_service = ApiService.where(name: service_name).last
           if api_service
             # TODO: Add the service class to the api service
-            service = Services::Slack.new api_service
+            service = Services::Slack.new api_service, params
             resource_name, query = params[:text].split(' ', 2)
             api_resource = ApiResource.where(name: resource_name).last
             if api_resource
               # TODO: Add the resource class to the api resource
               resource = Resources::Giphy.new api_resource
               resource_response = resource.request query
-              data = { image: resource_response }
-              data.merge channel: "#{params[:channel_name]}" if params[:channel_name]
-              service_response = service.request data
+              service_response = service.request image: resource_response
               status service_response.code
             else
               status 404

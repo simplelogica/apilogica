@@ -1,7 +1,13 @@
 module Services
   class Base
-    def initialize api_service
+    def initialize api_service, params
       @api_service = api_service
+      @options = parse_params params
+    end
+
+    # Overwrite this method to get params from http request
+    def parse_params params
+      {}
     end
 
     def http_request url, data
