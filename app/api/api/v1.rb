@@ -62,7 +62,9 @@ class API
               # TODO: Add the resource class to the api resource
               resource = Resources::Giphy.new api_resource
               resource_response = resource.request query
-              service_response = service.request image: resource_response
+              data = { image: resource_response }
+              data.merge channel: "#{params[:channel_name]}" if params[:channel_name]
+              service_response = service.request data
               status service_response.code
             else
               status 404
