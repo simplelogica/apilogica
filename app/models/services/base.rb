@@ -1,13 +1,19 @@
 module Services
   class Base
+    # Attributes for resource and query send by the service
+    # that needs to be parsed in each service
+    attr_accessor :resource_name, :query
+
     def initialize api_service, params
       @api_service = api_service
-      @options = parse_params params
+      parse_params params
     end
 
     # Overwrite this method to get params from http request
     def parse_params params
-      {}
+      @resource_name = ''
+      @query = ''
+      @options = {}
     end
 
     def http_request url, data
