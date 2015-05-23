@@ -1,6 +1,6 @@
 class API
   class V1 < Grape::API
-    version 'v1', using: :path, vendor: 'acutario'
+    version 'v1', using: :path, vendor: 'apilogica'
 
     helpers do
       params :service do
