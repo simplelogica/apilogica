@@ -3,7 +3,7 @@ module Resources
     # URL for Giphy random endpoint
     # http://api.giphy.com/v1/gifs/random
     def resource_url query
-      "#{@api_resource.endpoint}?q=#{query}&api_key=#{@api_resource.api_key}"
+      "#{@api_resource.endpoint}?tag=#{query}&api_key=#{@api_resource.api_key}"
     end
 
     def request query
