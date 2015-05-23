@@ -8,4 +8,9 @@ class ApiService
   field :name, type: String
   field :token, type: String
   field :callback_url, type: String
+  field :kind, type: String
+
+  def get_service params
+    kind.constantize.new self, params
+  end
 end
