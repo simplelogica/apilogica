@@ -9,7 +9,6 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'grape'
 group :development, :test do
-  gem 'byebug'
   gem 'web-console', '~> 2.0'
   gem 'spring'
 end
@@ -34,13 +33,18 @@ end
 group :development, :test do
   gem 'factory_girl_rails'
   gem 'faker'
-  gem 'pry-rails'
-  gem 'pry-rescue'
   gem 'rspec-rails'
   gem 'rubocop'
   gem 'mongoid'
   gem 'bson_ext'
   gem 'devise'
+
+  # PRY
+  gem 'pry-rails'
+  gem 'pry-byebug'
+  gem 'pry-remote'
+  gem 'pry-stack_explorer'
+  gem 'pry-rescue'
 end
 group :production do
   gem 'mongoid'
