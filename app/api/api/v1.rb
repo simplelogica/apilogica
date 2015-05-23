@@ -55,18 +55,7 @@ class API
           api_service = ApiService.where(name: service_name).last
           if api_service
             service = api_service.get_service params
-            # TODO: this is service dependet and only works for Slack
-            #       we need th get resource and query
-            resource_name, query = params[:text].split(' ', 2)
-            api_resource = ApiResource.where(name: resource_name).last
-            if api_resource
-              resource = api_resource.get_resource
-              resource_response = resource.request query
-              service_response = service.request image: resource_response
-              status service_response.code
-            else
-              status 404
-            end
+            status service.request_resource.code
           else
             status 404
           end

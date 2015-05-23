@@ -27,5 +27,18 @@ module Services
       request.set_form_data(data)
       http.request(request)
     end
+
+    # Do the request to the resource send to the service
+    # and returns the status code
+    def request_resource
+      api_resource = ApiResource.where(name: resource_name).last
+      if api_resource
+        resource = api_resource.get_resource
+        resource_response = resource.request query
+        request image: resource_response
+      else
+        Net::HTTPNotFound.new
+      end
+    end
   end
 end
