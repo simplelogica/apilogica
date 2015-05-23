@@ -10,4 +10,8 @@ class ApiResource
   def get_resource
     kind.constantize.new self
   end
+
+  def kind_enum
+    [['Giphy', 'Resources::Giphy']]
+  end
 end

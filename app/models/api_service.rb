@@ -13,4 +13,8 @@ class ApiService
   def get_service params
     kind.constantize.new self, params
   end
+
+  def kind_enum
+    [['Slack', 'Services::Slack']]
+  end
 end
