@@ -10,4 +10,12 @@ class ApiResource
   def get_resource
     kind.constantize.new self
   end
+
+  # Gets resources dynamically from module for rails admin selection
+  def kind_enum
+    resources = Resources.constants
+    # Base class couldn't be selected
+    resources.delete :Base
+    resources.map { |resource| [resource, "Resources::#{resource}"] }
+  end
 end
