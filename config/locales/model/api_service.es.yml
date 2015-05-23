@@ -1,7 +1,7 @@
 es:
   mongoid:
     models:
-      api_service: Recurso
+      api_service: Servicio
     attributes:
       api_service:
         callback_url: URL de retorno
