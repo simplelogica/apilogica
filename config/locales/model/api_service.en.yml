@@ -1,0 +1,12 @@
+en:
+  mongoid:
+    models:
+      api_service: Service
+    attributes:
+      api_service:
+        callback_url: Callback URL
+        created_at: Created at
+        kind: Kind
+        name: Name
+        token: Token
+        updated_at: Updated at

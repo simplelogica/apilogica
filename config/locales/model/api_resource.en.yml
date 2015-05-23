@@ -1,0 +1,12 @@
+en:
+  mongoid:
+    models:
+      api_resource: Resource
+    attributes:
+      api_resource:
+        api_key: API key
+        created_at: Created at
+        endpoint: Endpoint
+        kind: Kind
+        name: Name
+        updated_at: Updated at
