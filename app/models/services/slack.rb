@@ -4,7 +4,7 @@ module Services
     def parse_params params
       @resource_name, @query = params[:text].split(' ', 2) if params[:text]
       @options = {
-        channel: params[:channel_name] ? "#{params[:channel_name]}" : nil,
+        channel: params[:channel_name] ? "##{params[:channel_name]}" : nil,
         user_name: params[:user_name],
         token: params[:token]
       }
