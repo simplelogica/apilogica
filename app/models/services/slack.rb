@@ -14,7 +14,7 @@ module Services
       data = {
         channel: @options[:channel] || '#apilogica',
         username: 'Apilogica',
-        text: options[:text] || "Sent by #{@options[:user_name]}",
+        text: options[:text] || "Sent by #{@options[:user_name]} with '#{query}'",
         icon_emoji: ':crystal_ball:',
         attachments: [
           { image_url: options[:image] }
