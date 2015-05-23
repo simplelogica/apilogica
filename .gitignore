@@ -80,5 +80,9 @@ pickle-email-*.html
 
 # Other
 .ruby-version
+
+# Arcanist
 .arcconfig
+
+# RVM
 .rvmrc
