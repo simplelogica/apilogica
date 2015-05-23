@@ -41,5 +41,26 @@ class API
         end
       end
     end
+
+    resource :services do
+      route_param :id do
+        desc 'Make a query for a resource' do
+          detail 'Returns the result of query for a resource.'
+        end
+        params do
+          use :query
+        end
+        get do
+          service_name = params[:id]
+          api_service = ApiService.where(name: service_name).last
+          if api_service
+            service = api_service.get_service params
+            status service.request_resource.code
+          else
+            status 404
+          end
+        end
+      end
+    end
   end
 end
