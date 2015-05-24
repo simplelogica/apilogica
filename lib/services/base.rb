@@ -43,7 +43,7 @@ module Services
             resource.help
           else
             resource_response = resource.request query
-            request image: resource_response
+            request resource_response
           end
         else
           Net::HTTPNotFound.new(1.0, 404, "NOT FOUND")
