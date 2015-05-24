@@ -11,14 +11,14 @@ class ApiService
   field :kind, type: String
 
   def get_service params
-    kind.constantize.new self, params
+    Services.const_get(kind).new self, params
   end
 
   # Gets services dynamically from module for rails admin selection
   def kind_enum
-    services = Services.constants
-    # Base class couldn't be selected
-    services.delete :Base
-    services.map { |service| [service, "Services::#{service}"] }
+    # Only classes and base class can't be selected
+    Services.constants.select do |c|
+      Services.const_get(c).is_a?(Class) && c != :Base
+    end
   end
 end
