@@ -6,6 +6,10 @@ module Resources
       "#{@api_resource.endpoint}?tag=#{query}&api_key=#{@api_resource.api_key}"
     end
 
+    def help
+      "#{@api_resource.name} 'query'"
+    end
+
     def request query
       url = resource_url query
       response = http_request url
