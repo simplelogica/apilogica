@@ -5,7 +5,7 @@ module Resources
 
     def help
       "#{@api_resource.name} 'meme name' | 'top text' | 'bottom text'\n" \
-      "Availables memes: #{AVAILABLE_MEMES.map{|k,v| k}.join(', ')}"
+      "Available memes: #{AVAILABLE_MEMES.map{|k,v| k}.join(', ')}"
     end
 
     # URL for memecaptain
