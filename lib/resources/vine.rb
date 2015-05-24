@@ -13,8 +13,8 @@ module Resources
     def request query
       url = resource_url query
       response = http_request url
-      if response['data'] && response['data'].any?
-        records = response['data']['count']
+      if response['data'] && response['data']['records'].any?
+        records = response['data']['records'].count
         {video: response['data']['records'][rand(0..records-1)]['permalinkUrl']}
       else
         {video: 'https://vine.co/v/hHDi56lJ9AO'}

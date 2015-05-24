@@ -8,14 +8,14 @@ class ApiResource
   field :kind, type: String
 
   def get_resource
-    kind.constantize.new self
+    Resources.const_get(kind).new self
   end
 
   # Gets resources dynamically from module for rails admin selection
   def kind_enum
-    resources = Resources.constants
-    # Base class couldn't be selected
-    resources.delete :Base
-    resources.map { |resource| [resource, "Resources::#{resource}"] }
+    # Only classes and base class can't be selected
+    Resources.constants.select do |c|
+      Resources.const_get(c).is_a?(Class) && c != :Base
+    end
   end
 end
