@@ -5,7 +5,7 @@ module Resources
 
     def help
       "#{@api_resource.name} 'meme name' | 'top text' | 'bottom text'. " \
-      "Available memes: #{AVAILABLE_MEMES.map{|k,v| k}.join(', ')}"
+      "Available memes: #{AVAILABLE_MEMES.keys.join(', ')}"
     end
 
     # URL for memecaptain
@@ -16,8 +16,8 @@ module Resources
       "#{@api_resource.endpoint}/"\
       "g?u=http%3A%2F%2Fv1.memecaptain.com%2F"\
       "#{image_name}"\
-      "&t1=#{matches[2]}"\
-      "&t2=#{matches[3]}"
+      "&t1=#{matches[2] rescue ''}"\
+      "&t2=#{matches[3] rescue ''}"
     rescue
       "http://v1.memecaptain.com/g?u=http%3A%2F%2Fv1.memecaptain.com%2Ffirst_world_problems.jpg&t1=meme+404+error&t2=no+encuentro+lo+que+pides+%3A%27("
     end
