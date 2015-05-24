@@ -4,6 +4,10 @@ module Resources
       @api_resource = api_resource
     end
 
+    def help
+      "#{@api_resource.name} don't has help yet"
+    end
+
     def http_request url, limit = 10
       uri = URI.parse url
       http = Net::HTTP.new(uri.host, uri.port)
