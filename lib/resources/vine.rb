@@ -15,9 +15,19 @@ module Resources
       response = http_request url
       if response['data'] && response['data']['records'].any?
         records = response['data']['records'].count
-        {image_url: response['data']['records'][rand(0..records-1)]['permalinkUrl']}
+        {
+          title: "Random ##{query} Vine",
+          title_link: response['data']['records'][rand(0..records-1)]['permalinkUrl'],
+          text: response['data']['records'][rand(0..records-1)]['title'],
+          image: response['data']['records'][rand(0..records-1)]['permalinkUrl']
+        }
       else
-        {image_url: 'https://vine.co/v/hHDi56lJ9AO'}
+        {
+          title: "Random #{query} Vine",
+          title_link: 'https://vine.co/v/hHDi56lJ9AO',
+          text: 'Upssssss...',
+          image: 'https://vine.co/v/hHDi56lJ9AO'
+        }
       end
     end
   end
