@@ -83,3 +83,6 @@ pickle-email-*.html
 
 # Arcanist
 .arcconfig
+
+# RVM
+.rvmrc
