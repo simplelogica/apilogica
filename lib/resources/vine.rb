@@ -15,9 +15,9 @@ module Resources
       response = http_request url
       if response['data'] && response['data']['records'].any?
         records = response['data']['records'].count
-        {image: response['data']['records'][rand(0..records-1)]['permalinkUrl']}
+        {image_url: response['data']['records'][rand(0..records-1)]['permalinkUrl']}
       else
-        {image: 'https://vine.co/v/hHDi56lJ9AO'}
+        {image_url: 'https://vine.co/v/hHDi56lJ9AO'}
       end
     end
   end
