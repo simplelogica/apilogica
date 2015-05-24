@@ -25,7 +25,7 @@ module Resources
     def request(query)
       url = self.resource_url(query)
       response = http_request(url)
-      response['imageUrl']
+      {image: response['imageUrl']}
     end
   end
 end

@@ -17,7 +17,9 @@ module Services
         text: options[:text] || "Sent by #{@options[:user_name]} with '#{query}'",
         icon_emoji: ':crystal_ball:',
         attachments: [
-          { image_url: options[:image] }
+          { pretext: options[:pretext] || nil ,
+            image_url: options[:image] || nil,
+            mrkdwn_in: ['pretext']}
         ]
       }
       # Slack callback needs a payload param with the json data
