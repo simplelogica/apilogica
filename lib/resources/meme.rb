@@ -1,14 +1,18 @@
 module Resources
   class Meme < Base
+    # Freeze memes hash on load
+    AVAILABLE_MEMES = YAML.load(File.open(File.join(File.dirname(__FILE__), "../assets/meme/meme_image_names.yml"))).freeze
+
     def help
-      "#{@api_resource.name} 'meme name' | 'top text' | 'bottom text'"
+      "#{@api_resource.name} 'meme name' | 'top text' | 'bottom text'. " \
+      "Available memes: #{AVAILABLE_MEMES.map{|k,v| k}.join(', ')}"
     end
 
     # URL for memecaptain
     # http://v1.memecaptain.com/
     def resource_url(query)
       matches = query.match(/(\S+)\s*\|\s*(.+)\s*\|\s*(.+)/)
-      image_name = YAML.load(File.open(File.join(File.dirname(__FILE__), "../assets/meme/meme_image_names.yml")))[matches[1]]
+      image_name = AVAILABLE_MEMES[matches[1]]
       "#{@api_resource.endpoint}/"\
       "g?u=http%3A%2F%2Fv1.memecaptain.com%2F"\
       "#{image_name}"\
