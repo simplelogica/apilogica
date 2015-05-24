@@ -1,4 +1,6 @@
 module Services
+  HELP_OPTION = '-help'.freeze
+
   class Base
     # Attributes for resource and query send by the service
     # that needs to be parsed in each service
@@ -32,12 +34,20 @@ module Services
     # and returns the status code
     def request_resource
       api_resource = ApiResource.where(name: resource_name).last
-      if api_resource
-        resource = api_resource.get_resource
-        resource_response = resource.request query
-        request image: resource_response
+      if resource_name == HELP_OPTION
+        "Available resources: #{ApiResource.pluck(:name).to_sentence}"
       else
-        Net::HTTPNotFound.new
+        if api_resource
+          resource = api_resource.get_resource
+          if query == HELP_OPTION
+            resource.help
+          else
+            resource_response = resource.request query
+            request image: resource_response
+          end
+        else
+          Net::HTTPNotFound.new(1.0, 404, "NOT FOUND")
+        end
       end
     end
   end

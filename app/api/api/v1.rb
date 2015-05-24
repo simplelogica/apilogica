@@ -18,6 +18,19 @@ class API
                           desc: 'Query for the resource'
                         }
       end
+
+      def api_response response
+        case response
+        when Integer
+          status response
+        when String
+          response
+        when Net::HTTPResponse
+          "#{response.code}: #{response.message}"
+        else
+          status 400 # Bad request
+        end
+      end
     end
 
     resource :resources do
@@ -55,7 +68,7 @@ class API
           api_service = ApiService.where(name: service_name).last
           if api_service
             service = api_service.get_service params
-            status service.request_resource.code
+            api_response service.request_resource
           else
             status 404
           end
