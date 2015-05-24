@@ -15,9 +15,9 @@ module Resources
       response = http_request url
       if response['data'] && response['data']['records'].any?
         records = response['data']['records'].count
-        {video: response['data']['records'][rand(0..records-1)]['permalinkUrl']}
+        {text: response['data']['records'][rand(0..records-1)]['permalinkUrl']}
       else
-        {video: 'https://vine.co/v/hHDi56lJ9AO'}
+        {text: 'https://vine.co/v/hHDi56lJ9AO'}
       end
     end
   end
