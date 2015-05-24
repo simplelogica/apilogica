@@ -4,7 +4,7 @@ module Resources
     AVAILABLE_MEMES = YAML.load(File.open(File.join(File.dirname(__FILE__), "../assets/meme/meme_image_names.yml"))).freeze
 
     def help
-      "#{@api_resource.name} 'meme name' | 'top text' | 'bottom text' " \
+      "#{@api_resource.name} 'meme name' | 'top text' | 'bottom text'. " \
       "Available memes: #{AVAILABLE_MEMES.map{|k,v| k}.join(', ')}"
     end
 
