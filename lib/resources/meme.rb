@@ -1,5 +1,9 @@
 module Resources
   class Meme < Base
+    def help
+      "#{@api_resource.name} 'meme name' | 'top text' | 'bottom text'"
+    end
+
     # URL for memecaptain
     # http://v1.memecaptain.com/
     def resource_url(query)
