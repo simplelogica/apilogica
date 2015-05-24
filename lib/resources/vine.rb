@@ -15,18 +15,19 @@ module Resources
       response = http_request url
       if response['data'] && response['data']['records'].any?
         records = response['data']['records'].count
+        record = rand(0..records-1)
         {
           title: "Random ##{query} Vine",
-          title_link: response['data']['records'][rand(0..records-1)]['permalinkUrl'],
-          text: response['data']['records'][rand(0..records-1)]['title'],
-          image: response['data']['records'][rand(0..records-1)]['permalinkUrl']
+          title_link: response['data']['records'][record]['permalinkUrl'],
+          text: response['data']['records'][record]['permalinkUrl'],
+          image: response['data']['records'][record]['thumbnailUrl']
         }
       else
         {
-          title: "Random #{query} Vine",
+          title: "Random ##{query} Vine",
           title_link: 'https://vine.co/v/hHDi56lJ9AO',
-          text: 'Upssssss...',
-          image: 'https://vine.co/v/hHDi56lJ9AO'
+          text: 'Upsssss...',
+          image: 'http://www.eadlf.com/wp-content/uploads/2012/06/chiquito.gif'
         }
       end
     end
