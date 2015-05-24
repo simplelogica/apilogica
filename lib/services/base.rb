@@ -19,7 +19,7 @@ module Services
     end
 
     def http_request url, data
-      uri = URI.parse url
+      uri = URI.parse Utils.encode_url(url)
       http = Net::HTTP.new(uri.host, uri.port)
       if uri.scheme == 'https'
         http.use_ssl = true

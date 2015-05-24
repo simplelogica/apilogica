@@ -1,5 +1,3 @@
-require "open-uri"
-
 module Resources
   class Meme < Base
     # Freeze memes hash on load
@@ -20,7 +18,7 @@ module Resources
     # URL for memecaptain
     # http://v1.memecaptain.com/
     def resource_url(query)
-      URI.encode(self.generate_url(query))
+      self.generate_url(query)
     rescue
       self.help
     end
