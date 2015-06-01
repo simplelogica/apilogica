@@ -25,8 +25,8 @@ module Resources
 
     def extract_matches_from_query(query)
       #1: meme_name; 2: up_text; 3: down_text
-      matches = query.match(/(\S+)\s*\|\s*(.+)\s*\|\s*(.+)/)
-      [matches[1], (matches[2] rescue ""), (matches[3] rescue "")]
+      matches = query.split("|").map(&:strip)
+      [matches[0], (matches[1] || ""), (matches[2] || "")]
     end
 
     def generate_url(query)
