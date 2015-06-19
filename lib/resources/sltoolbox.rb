@@ -1,15 +1,30 @@
 module Resources
   class SlToolbox < Base
-    # URL for SlToolbox random endpoint
-    # http://sl-toolbox.herokuapp.com
+    # URL for SlToolbox endpoint
+    # http://sl-toolbox.herokuapp.com/api/v1/resources
     def resource_url query
-      "#{@api_resource.endpoint}/#{query}"
+        self.generate_url(query)
+      rescue
+        self.help
     end
 
     def help
       "#{@api_resource.name} 'sltoolbox action [options]'" \
       "Available actions: search tag" \
       "                   save url,tag_list (separated by commas)"
+    end
+
+    def generate_url(query)
+      action = query.split(" ")[0]
+      params = query.split(" ")[1..-1]
+
+      if action == 'search'
+        "#{@api_resource.endpoint}?action=search&query=#{params}"
+      elsif action == 'save'
+        "#{@api_resource.endpoint}?action=save&query=#{params}"
+      else
+        nil
+      end
     end
 
     def request query
