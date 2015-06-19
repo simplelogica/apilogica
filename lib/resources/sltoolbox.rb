@@ -10,8 +10,8 @@ module Resources
 
     def help
       "#{@api_resource.name} 'sltoolbox action [options]'" \
-      "Available actions: search tag" \
-      "                   save url,tag_list (separated by commas)"
+      "| Available actions: search tag" \
+      "| save url,tag_list (separated by commas)"
     end
 
     def generate_url(query)
