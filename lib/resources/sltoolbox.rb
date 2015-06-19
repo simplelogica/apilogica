@@ -21,7 +21,7 @@ module Resources
       if action == 'search'
         "#{@api_resource.endpoint}?action=search&query=#{params}"
       elsif action == 'save'
-        "#{@api_resource.endpoint}?action=save&query=#{params}&user=apilogica@simplelogica.net"
+        "#{@api_resource.endpoint}?action=save&query=#{params}&user='apilogica@simplelogica.net'"
       else
         nil
       end
