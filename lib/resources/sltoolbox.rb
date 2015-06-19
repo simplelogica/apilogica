@@ -16,12 +16,12 @@ module Resources
 
     def generate_url(query)
       action = query.split(" ")[0]
-      params = query.split(" ")[1..-1]
+      params = query.split(" ")[1..-1].join("")
 
       if action == 'search'
         "#{@api_resource.endpoint}?action=search&query=#{params}"
       elsif action == 'save'
-        "#{@api_resource.endpoint}?action=save&query=#{params}"
+        "#{@api_resource.endpoint}?action=save&query=#{params}&user=apilogica@simplelogica.net"
       else
         nil
       end
@@ -30,17 +30,15 @@ module Resources
     def request query
       url = resource_url query
       response = http_request url
-      if response['data'] && response['data']['resource_url'].present?
-        records = response['data']['records'].count
-        record = rand(0..records-1)
+      if response && response['resource_url'].present?
         {
           title: "¡Enlace almacenado en SlToolbox! Pincha aquí para verlo",
-          title_link: response['data']['url']
+          title_link: response['url']
         }
-      elsif response['data'] && response['data']['url'].present?
+      elsif response && response['url'].present?
         {
           title: "Búsqueda en SlToolbox con tags",
-          title_link: response['data']['url']
+          title_link: response['url']
         }
       else
         {
