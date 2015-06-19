@@ -33,7 +33,7 @@ module Resources
       if response['resource_url'].present?
         {
           title: "¡Enlace almacenado en SlToolbox! Pincha aquí para verlo",
-          title_link: response['url']
+          title_link: response['resource_url']
         }
       elsif response['url'].present?
         {
