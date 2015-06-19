@@ -1,5 +1,5 @@
 module Resources
-  class SlToolbox < Base
+  class Toolbox < Base
     # URL for SlToolbox endpoint
     # http://sl-toolbox.herokuapp.com/api/v1/resources
     def resource_url query
