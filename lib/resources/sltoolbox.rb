@@ -30,14 +30,14 @@ module Resources
     def request query
       url = resource_url query
       response = http_request url
-      if response && response['resource_url'].present?
+      if response['status'] == 200 && response['resource_url'].present?
         {
           title: "¡Enlace almacenado en SlToolbox! Pincha aquí para verlo",
           title_link: response['url']
         }
-      elsif response && response['url'].present?
+      elsif response['status'] == 200 && response['url'].present?
         {
-          title: "Búsqueda en SlToolbox con tags",
+          title: "Pincha aquí para ver el resultado de la búsqueda en SlToolbox",
           title_link: response['url']
         }
       else
