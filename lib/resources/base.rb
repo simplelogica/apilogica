@@ -8,7 +8,7 @@ module Resources
       "#{@api_resource.name} don't has help yet"
     end
 
-    def http_request url, limit = 10
+    def http_request url, format = :json, limit = 10
       uri = URI.parse Utils.encode_url(url)
       http = Net::HTTP.new(uri.host, uri.port)
       if uri.scheme == 'https'
@@ -19,7 +19,11 @@ module Resources
       response = http.request(request)
       # Handle redirections
       case response
-      when Net::HTTPSuccess     then ActiveSupport::JSON.decode(response.body)
+      when Net::HTTPSuccess 
+        case format 
+        when :json then ActiveSupport::JSON.decode(response.body)
+        when :raw then response.body
+        end
       when Net::HTTPRedirection then http_request(response['location'], limit - 1)
       end
     end
