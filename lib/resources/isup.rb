@@ -1,5 +1,5 @@
 module Resources
-  class IsUp < Base
+  class Isup < Base
     # URL for IsUp cheking service
     # http://isup.me/
     def resource_url query
@@ -16,11 +16,15 @@ module Resources
 
       if !response.blank?
         if (response.include?("It's just you"))
-          title: "It appears that #{query} is UP from here",
-          text: "Maybe you have some DNS or network issue..."
+          {
+            title: "It appears that #{query} is UP from here",
+            text: "Maybe the problem is in your connection or ISP..."
+          }
         else
-          title: "It isn\'t just you! It appears that #{query} is DOWN from here",
-          text: "The domain wasn't available when trying to access it from isup.me service."
+          {
+            title: "It isn\'t just you! It appears that #{query} is DOWN from here",
+            text: "The web service at #{query} doesn't respond."
+          }
         end
       else
         {
